@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Portfolio Tracker — Next.js + TypeScript
 
-## Getting Started
+A minimalist, investor-focused public portfolio website built with Next.js, TypeScript, and TailwindCSS.
+It allows you to showcase your equity portfolio, watchlist, investment theses, and performance—cleanly and professionally.
 
-First, run the development server:
+Perfect for sharing your portfolio with friends, clients, or your audience.
 
-```bash
-npm run dev
+Features
+
+🧠 Portfolio Dashboard — allocation visuals, market cap, P/S, price performance.
+
+📈 Watchlist — interest scoring, fundamentals, deep-dive pages.
+
+⏳ Open Positions — holding time, days remaining, overdue flag.
+
+📆 Annual Performance — year-over-year returns.
+
+📝 Deep Dive Pages — description, thesis, bear case, custom banner images.
+
+⚡ Blazing fast (Next.js App Router, optimized images).
+
+🎨 Clean UI (TailwindCSS + minimalist design).
+
+🔧 Fully editable — just update one data file.
+
+Tech Stack
+
+Next.js 14 (App Router)
+
+TypeScript
+
+TailwindCSS
+
+Clearbit Logos for company icons
+
+Local JSON/TS data for full customization
+
+Getting Started
+
+1. Clone the repository
+   git clone https://github.com/YOUR_USERNAME/portfolio-tracker.git
+   cd portfolio-tracker
+
+2. Install dependencies
+   npm install
+
 # or
-yarn dev
+
+pnpm install
+
 # or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+yarn install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server
+   npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Your site is now running at:
 
-## Learn More
+http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+Customize Your Portfolio
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All your data lives in:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+/src/data/portfolio.ts
+/src/data/watchlist.ts
 
-## Deploy on Vercel
+Example entry
+{
+ticker: "AAPL",
+name: "Apple Inc.",
+allocationPercentage: 0.20,
+currentPrice: 185.92,
+change1Y: 0.015,
+marketCapUsd: 2900000000000,
+priceToSales: 7.2,
+iconURL: "https://logo.clearbit.com/apple.com",
+coverImageURL: "/ticker.jpeg",
+description: "Short overview of the business...",
+thesis: ["Your thesis point 1", "Point 2"],
+bearCase: ["Your bear point 1", "Point 2"]
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Add or remove holdings
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Simply edit the array:
+
+export const PORTFOLIO_DATA = [ ... ]
+
+Update Watchlist
+
+Same idea:
+
+export const WATCHLIST_DATA = [ ... ]
+
+Deploying
+
+Deploy easily on Vercel (recommended):
+
+Push your repo to GitHub.
+
+Go to https://vercel.com
+
+Import project → Deploy.
+
+Your portfolio becomes public instantly.
+
+Why This Project Exists
+
+Investors often want a clean public page to show:
+
+current holdings
+
+performance
+
+research notes
+
+conviction levels
+
+This project provides a simple, beautiful framework to do exactly that.
+
+License
+
+MIT License — free to use and modify.
+
+If you want, I can also write:
+
+a project banner,
+
+a demo GIF,
+
+a custom badge section,
+
+or a copy-paste GitHub description block.
+
+Just ask.
