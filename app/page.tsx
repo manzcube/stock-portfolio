@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 import Link from "next/link";
 import Image from "next/image";
-import { currencyFormatter, formatMarketCapUsd } from "@/lib/utils";
+import { formatMarketCapUsd } from "@/lib/utils";
 
 const annualReturns = [
   { label: "Year 1", period: "23 Nov 2023 → 23 Nov 2024", returnPct: 45.1 },
@@ -173,9 +173,6 @@ export default function Home() {
 
             <tbody className="text-sm font-normal text-gray-900">
               {sortedData.map((item) => {
-                const formattedPrice = currencyFormatter.format(
-                  item.currentPrice
-                );
                 const formattedMarketCap = formatMarketCapUsd(
                   item.marketCapUsd
                 );

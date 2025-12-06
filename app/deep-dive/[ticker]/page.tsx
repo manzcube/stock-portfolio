@@ -1,7 +1,5 @@
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 import { WATCHLIST_DATA } from "@/data/watchlist";
-import { notFound } from "next/navigation";
-import Image from "next/image";
 
 interface PageProps {
   params: {
@@ -26,7 +24,6 @@ export default function DeepDivePage({ params }: PageProps) {
       </div>
     );
   }
-  console.log(stock.ticker.toLowerCase());
 
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto pb-20">
@@ -87,7 +84,7 @@ export default function DeepDivePage({ params }: PageProps) {
       {/* The Bear Case */}
       <section className="py-8 border-t border-gray-100 px-4 sm:px-0">
         <h3 className="text-md font-semibold text-gray-900 mb-6">
-          The Bear Case (What I Don't Like) 🛑
+          The Bear Case (What I Don&apos;t Like) 🛑
         </h3>
         <ul className="space-y-4 text-sm font-light text-gray-700">
           <li>• Potential regulatory headwinds in key operating regions.</li>
