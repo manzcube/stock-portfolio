@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { Github } from "lucide-react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,6 +32,14 @@ export default function RootLayout({
               className="hover:text-gray-600 transition-colors"
             >
               Trading
+            </Link>
+            <Link
+              href="https://github.com/manzcube/stock-portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-600 transition-colors"
+            >
+              <Github className="w-5 h-5" />
             </Link>
           </nav>
         </header>
