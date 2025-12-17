@@ -1,25 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { WATCHLIST_DATA } from "@/data/watchlist";
+import { WATCHLIST_DATA, OPEN_POSITIONS, PAST_TRADES } from "@/data/watchlist";
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
-
-type OpenPosition = {
-  ticker: string;
-  openDate: string; // ISO string: "2025-01-10"
-  expectedHoldDays: number;
-};
-
-const OPEN_POSITIONS: OpenPosition[] = [
-  {
-    ticker: "ADBE",
-    openDate: "12/2/2025",
-    expectedHoldDays: 7,
-  },
-];
 
 export default function DeepDives() {
   const totalTickers = WATCHLIST_DATA.length;
@@ -336,6 +322,132 @@ export default function DeepDives() {
                         <span className="ml-1">
                           {isAboveOrAtATH ? "+" : ""}
                           {changeFromATHPercent}%
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* PAST TRADES SECTION */}
+      <section className="rounded-2xl border border-gray-200 bg-white/70 shadow-sm backdrop-blur-sm p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="space-y-1">
+            <h2 className="text-xs font-medium tracking-[0.28em] text-gray-500">
+              PAST TRADES
+            </h2>
+            <p className="text-xl font-light tracking-tight text-gray-900">
+              Trade history & performance
+            </p>
+            <p className="text-sm text-gray-500">
+              A log of recently closed positions and their realized returns.
+            </p>
+          </div>
+
+          <div className="space-y-1 text-right text-sm text-gray-700">
+            <p className="text-xs uppercase tracking-wide text-gray-500">
+              Positions closed
+            </p>
+            <p className="text-base font-medium tabular-nums">
+              {PAST_TRADES.length}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 w-full overflow-x-auto">
+          <table className="w-full min-w-[680px] border-collapse text-left">
+            <thead>
+              <tr className="border-b border-gray-200 text-xs text-gray-500">
+                <th className="py-3 pr-4 font-normal">Ticker</th>
+                <th className="py-3 pr-4 font-normal">Entry date</th>
+                <th className="py-3 pr-4 font-normal">Exit date</th>
+                <th className="py-3 pr-4 font-normal">Days held</th>
+                <th className="py-3 pr-4 font-normal">Leverage</th>
+                <th className="py-3 pr-4 font-normal">Return</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm font-normal text-gray-900">
+              {PAST_TRADES.map((trade) => {
+                const stock = WATCHLIST_DATA.find(
+                  (item) => item.ticker === trade.ticker
+                );
+                const returnPercent = (trade.returnPercent * 100).toFixed(1);
+                const isPositive = trade.returnPercent >= 0;
+
+                return (
+                  <tr
+                    key={`${trade.ticker}-${trade.entryDate}`}
+                    className="border-b border-gray-100 last:border-b-0 transition-colors hover:bg-gray-50/60"
+                  >
+                    {/* TICKER */}
+                    <td className="py-4 pr-4">
+                      {stock ? (
+                        <Link
+                          href={`/deep-dive/${trade.ticker}`}
+                          className="flex items-center gap-3 transition-colors hover:text-blue-600"
+                        >
+                          {stock.iconURL && (
+                            <div className="relative h-8 w-8 overflow-hidden rounded-full bg-gray-100">
+                              <Image
+                                src={stock.iconURL}
+                                alt={`${trade.ticker} logo`}
+                                fill
+                                className="object-contain p-1.5"
+                              />
+                            </div>
+                          )}
+                          <span className="font-medium tabular-nums">
+                            {trade.ticker}
+                          </span>
+                        </Link>
+                      ) : (
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-full bg-gray-100" />
+                          <span className="font-medium tabular-nums">
+                            {trade.ticker}
+                          </span>
+                        </div>
+                      )}
+                    </td>
+
+                    {/* ENTRY DATE */}
+                    <td className="py-4 pr-4 text-gray-700">
+                      {trade.entryDate}
+                    </td>
+
+                    {/* EXIT DATE */}
+                    <td className="py-4 pr-4 text-gray-700">
+                      {trade.exitDate}
+                    </td>
+
+                    {/* DAYS HELD */}
+                    <td className="py-4 pr-4 tabular-nums text-gray-700">
+                      {trade.daysHeld} days
+                    </td>
+
+                    {/* LEVERAGE */}
+                    <td className="py-4 pr-4 tabular-nums text-gray-700">
+                      {trade.leverage}
+                    </td>
+
+                    {/* RETURN */}
+                    <td className="py-4 pr-4">
+                      <span
+                        className={[
+                          "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium tabular-nums",
+                          isPositive
+                            ? "bg-green-50 text-green-700 ring-1 ring-green-100"
+                            : "bg-red-50 text-red-700 ring-1 ring-red-100",
+                        ].join(" ")}
+                      >
+                        {isPositive ? "▲" : "▼"}{" "}
+                        <span className="ml-1">
+                          {isPositive ? "+" : ""}
+                          {returnPercent}%
                         </span>
                       </span>
                     </td>

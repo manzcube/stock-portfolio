@@ -16,9 +16,9 @@ export const WATCHLIST_DATA: WatchlistData[] = [
     ticker: "ADBE",
     name: "Adobe Inc.",
     interestScore: 10,
-    currentPrice: 328.73,
-    change1D: 0.006,
-    changeFromATH: -0.527, // ~52% below ATH
+    currentPrice: 347.34, // latest close price ~Dec 16, 2025 :contentReference[oaicite:0]{index=0}
+    change1D: -0.009, // small down move vs previous close (approx) :contentReference[oaicite:1]{index=1}
+    changeFromATH: -0.256, // ~26% below 52-week high (range ~465) :contentReference[oaicite:2]{index=2}
     iconURL: "https://logo.clearbit.com/adobe.com",
     description:
       "Adobe is a global leader in creative software, offering products such as Photoshop, Illustrator, Premiere Pro, and the Creative Cloud subscription suite. The company also provides digital marketing and analytics tools through Adobe Experience Cloud.",
@@ -35,14 +35,13 @@ export const WATCHLIST_DATA: WatchlistData[] = [
       "Revenue growth slowing compared to hyper-growth SaaS companies.",
     ],
   },
-
   {
     ticker: "DUOL",
     name: "Duolingo, Inc.",
     interestScore: 7,
-    currentPrice: 188.38,
-    change1D: 0.016,
-    changeFromATH: -0.661, // ~66% below ATH
+    currentPrice: 185.97, // approximate recent close (Dec 15, 2025) :contentReference[oaicite:3]{index=3}
+    change1D: -0.052, // ~-5.25% 1-day change from latest data :contentReference[oaicite:4]{index=4}
+    changeFromATH: -0.659, // ~66% below peak (~544) :contentReference[oaicite:5]{index=5}
     iconURL: "https://logo.clearbit.com/duolingo.com",
     description:
       "Duolingo is a digital language-learning platform offering gamified lessons in over 40 languages. It monetizes through subscriptions, ads, and English proficiency testing.",
@@ -59,14 +58,13 @@ export const WATCHLIST_DATA: WatchlistData[] = [
       "Monetization outside language learning is still unproven.",
     ],
   },
-
   {
     ticker: "NVO",
     name: "Novo Nordisk A/S",
     interestScore: 10,
-    currentPrice: 47.99,
-    change1D: 0.0088,
-    changeFromATH: -0.674, // adjusted for ADR conversion
+    currentPrice: 48.97, // approximate recent close (~Dec 16, 2025) :contentReference[oaicite:6]{index=6}
+    change1D: -0.028, // ~-2.8% on most recent session (approx) :contentReference[oaicite:7]{index=7}
+    changeFromATH: -0.551, // ~55% below 52-week high (~109) :contentReference[oaicite:8]{index=8}
     iconURL: "https://logo.clearbit.com/novonordisk.com",
     description:
       "Novo Nordisk is a global pharmaceutical leader specializing in diabetes care, obesity treatments, and rare endocrine disorders. Its blockbuster drugs Ozempic and Wegovy dominate the GLP-1 obesity treatment market.",
@@ -83,14 +81,13 @@ export const WATCHLIST_DATA: WatchlistData[] = [
       "High expectations already baked into valuation.",
     ],
   },
-
   {
     ticker: "ORCL",
     name: "Oracle Corporation",
     interestScore: 8,
-    currentPrice: 208.25,
-    change1D: 0.0318,
-    changeFromATH: -0.383, // ~36% below ATH
+    currentPrice: 188.68, // most recent close price ~Dec 16, 2025 :contentReference[oaicite:9]{index=9}
+    change1D: 0.022, // Oracle moved modestly positive (~+2%) on Dec 16 news :contentReference[oaicite:10]{index=10}
+    changeFromATH: -0.455, // ~46% below 52-week high (~345) :contentReference[oaicite:11]{index=11}
     iconURL: "https://logo.clearbit.com/oracle.com",
     description:
       "Oracle provides enterprise database solutions, cloud infrastructure, and business applications. Its strength lies in mission-critical workloads and long-term enterprise contracts.",
@@ -106,5 +103,71 @@ export const WATCHLIST_DATA: WatchlistData[] = [
       "Aggressive competition in AI compute and cloud pricing.",
       "Brand perception weaker among modern developers.",
     ],
+  },
+];
+
+type OpenPosition = {
+  ticker: string;
+  openDate: string; // ISO string: "2025-01-10"
+  expectedHoldDays: number;
+};
+
+export const OPEN_POSITIONS: OpenPosition[] = [
+  {
+    ticker: "ORCL",
+    openDate: "12/10/2025",
+    expectedHoldDays: 14,
+  },
+];
+
+type PastTrade = {
+  ticker: string;
+  entryDate: string;
+  exitDate: string;
+  daysHeld: number;
+  leverage: string; // e.g., "1x", "2x"
+  returnPercent: number; // e.g., 0.15 = 15%
+};
+
+export const PAST_TRADES: PastTrade[] = [
+  {
+    ticker: "ADBE",
+    entryDate: "2/12/2025",
+    exitDate: "5/04/2025",
+    daysHeld: 3,
+    leverage: "5x",
+    returnPercent: 0.066,
+  },
+  {
+    ticker: "DUOL",
+    entryDate: "25/11/2025",
+    exitDate: "26/11/2025",
+    daysHeld: 1,
+    leverage: "5x",
+    returnPercent: 0.104,
+  },
+  {
+    ticker: "DUOL",
+    entryDate: "6/11/2025",
+    exitDate: "26/11/2025",
+    daysHeld: 20,
+    leverage: "5x",
+    returnPercent: 0.006,
+  },
+  {
+    ticker: "NVO",
+    entryDate: "17/11/2025",
+    exitDate: "24/11/2025",
+    daysHeld: 20,
+    leverage: "4x",
+    returnPercent: -0.128,
+  },
+  {
+    ticker: "NVO",
+    entryDate: "10/11/2025",
+    exitDate: "24/11/2025",
+    daysHeld: 20,
+    leverage: "4x",
+    returnPercent: -0.079,
   },
 ];
