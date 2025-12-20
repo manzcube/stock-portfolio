@@ -113,11 +113,11 @@ type OpenPosition = {
 };
 
 export const OPEN_POSITIONS: OpenPosition[] = [
-  {
-    ticker: "ORCL",
-    openDate: "12/10/2025",
-    expectedHoldDays: 14,
-  },
+  // {
+  //   ticker: "ORCL",
+  //   openDate: "12/10/2025",
+  //   expectedHoldDays: 14,
+  // },
 ];
 
 type PastTrade = {
@@ -130,6 +130,22 @@ type PastTrade = {
 };
 
 export const PAST_TRADES: PastTrade[] = [
+  {
+    ticker: "ORCL",
+    entryDate: "12/17/2025",
+    exitDate: "12/19/2025",
+    daysHeld: 1,
+    leverage: "5x",
+    returnPercent: 0.078,
+  },
+  {
+    ticker: "ORCL",
+    entryDate: "12/11/2025",
+    exitDate: "12/19/2025",
+    daysHeld: 1,
+    leverage: "5x",
+    returnPercent: -0.0068,
+  },
   {
     ticker: "ADBE",
     entryDate: "2/12/2025",
